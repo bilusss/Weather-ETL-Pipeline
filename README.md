@@ -18,7 +18,9 @@ The pipeline runs on a schedule and performs a full ETL cycle:
 >
 > Suggested path: `docs/architecture-diagram.png`
 
+<!-- Insert architecture diagram here in the future, e.g.:
 ![Weather ETL Architecture](docs/architecture-diagram.png)
+-->
 
 ### Components
 
