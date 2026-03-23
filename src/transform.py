@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 from logger import get_logger
 
 logger = get_logger("transform")
@@ -21,13 +22,15 @@ def transform(raw_data: dict[str, dict]) -> pd.DataFrame:
         "weather": item["weather"][0]["main"],
         "weather_description": item["weather"][0]["description"],
         "wind_speed": item["wind"]["speed"],
-        "fetched_at": item["dt"]
+        "fetched_at": datetime.fromtimestamp(item["dt"])
       })
     except Exception as e:
       logger.exception(f"Failed transforming data for {city} - {e}")
     
   df = pd.DataFrame(records)
   df["temperature"] = df["temperature"].round(1)
+  df["feels_like"] = df["feels_like"].round(1)
+  df["temp_min"] = df["temp_min"].round(1)
+  df["temp_max"] = df["temp_max"].round(1)
   df["wind_speed"] = df["wind_speed"].round(1)
-  print(df)
   return df

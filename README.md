@@ -14,5 +14,7 @@ then run those commands:
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+docker compose up -d
+python src/pipeline.py
 ```
 

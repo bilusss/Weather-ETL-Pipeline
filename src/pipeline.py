@@ -3,6 +3,7 @@ from transform import transform
 from load import load
 from logger import get_logger
 import time
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 logger = get_logger("pipeline")
 
@@ -10,15 +11,18 @@ def run_pipeline():
   try:
     logger.info("="*30)
     logger.info(f"Started running pipeline cycle")
+
     start = time.perf_counter()
+
     logger.info("Step 1/3: extract")
     raw = extract_all()
 
     logger.info("Step 2/3: transform")
     df = transform(raw)
     
-    # logger.info("Step 3/3: load")
+    logger.info("Step 3/3: load")
     load(df)
+
   except Exception as e:
     logger.exception(f" - {e}")
     raise
@@ -28,5 +32,10 @@ def run_pipeline():
     logger.info("="*30)
 
 if __name__ == "__main__":
+  logger.info(f"Pipeline cycle first run")
   run_pipeline()
-  # scheduler below
+
+  scheduler = BlockingScheduler()
+  scheduler.add_job(run_pipeline, "interval", minutes=5)
+  logger.info(f"Scheduler running - every minute")
+  scheduler.start()
