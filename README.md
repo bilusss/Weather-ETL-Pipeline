@@ -5,6 +5,7 @@ insert api keys from openweather website
 example:
 ```
 OPENWEATHER_API=XXXXX
+DB_URL=postgresql://admin:admin@localhost:5432/weather_db
 ```
 
 
