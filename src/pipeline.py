@@ -1,5 +1,6 @@
 from extract import extract_all
 from transform import transform
+from load import load
 from logger import get_logger
 import time
 
@@ -17,6 +18,7 @@ def run_pipeline():
     df = transform(raw)
     
     # logger.info("Step 3/3: load")
+    load(df)
   except Exception as e:
     logger.exception(f" - {e}")
     raise

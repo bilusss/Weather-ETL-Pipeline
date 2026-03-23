@@ -7,3 +7,7 @@ from logger import get_logger
 logger = get_logger("load")
 load_dotenv()
 
+DB_URL = os.getenv("DB_URL", "postgresql://admin:admin@localhost:5432/weather_db")
+
+def load(df: pd.DataFrame):
+  
