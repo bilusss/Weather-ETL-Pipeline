@@ -12,15 +12,10 @@ The pipeline runs on a schedule and performs a full ETL cycle:
 
 ## Architecture
 
-### Diagram (placeholder)
+### Diagram
 
-> Leave this section for your future architecture image.
->
-> Suggested path: `docs/architecture-diagram.png`
+![Diagram](docs/Diagram.png)
 
-<!-- Insert architecture diagram here in the future, e.g.:
-![Weather ETL Architecture](docs/architecture-diagram.png)
--->
 
 ### Components
 
@@ -100,6 +95,10 @@ python src/pipeline.py
 | `weather_description` | `VARCHAR(255)` | Detailed weather description |
 | `wind_speed` | `REAL` | Wind speed in m/s |
 | `fetched_at` | `TIMESTAMP` | API fetch timestamp |
+
+## Inside the DB
+
+![DBeaver](docs/DBeaver.png)
 
 ## Logs
 
